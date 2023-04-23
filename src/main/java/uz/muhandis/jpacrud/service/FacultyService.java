@@ -42,6 +42,11 @@ public class FacultyService {
         return facultyOptional.isPresent() ? facultyOptional.get() : null;
     }
 
+    public List<Faculty> getByUniversity(Integer universityId){
+        if (!universityRepository.findById(universityId).isPresent()) return null;
+        return facultyRepository.findFacultyByUniversityId(universityId);
+    }
+
     public List<Faculty> getAll() {
         return facultyRepository.findAll();
     }

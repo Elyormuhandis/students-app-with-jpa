@@ -16,16 +16,25 @@ public class FacultyController {
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
+
     //create
     @PostMapping()
     public String addFaculty(@RequestBody FacultyDto f) {
         return facultyService.add(f);
     }
+
     //read
     @GetMapping("{id}")
     public Faculty getFaculty(@PathVariable Integer id) {
         return facultyService.get(id);
     }
+
+    //read by university
+    @GetMapping("/byUniversity/{id}")
+    public List<Faculty> getFacultyByUniversity(@PathVariable Integer id) {
+        return facultyService.getByUniversity(id);
+    }
+
     //read all
     @GetMapping("/all")
     public List<Faculty> getFaculty() {
@@ -37,6 +46,7 @@ public class FacultyController {
     public List<Faculty> updateFaculty(@PathVariable Integer id, @RequestBody FacultyDto facultyDto) {
         return facultyService.update(id, facultyDto);
     }
+
     //delete
     @DeleteMapping("/{id}")
     public List<Faculty> deleteFaculty(@PathVariable Integer id) {

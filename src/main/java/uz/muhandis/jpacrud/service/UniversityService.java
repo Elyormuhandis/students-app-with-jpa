@@ -1,6 +1,5 @@
 package uz.muhandis.jpacrud.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.muhandis.jpacrud.entity.Address;
 import uz.muhandis.jpacrud.entity.University;
@@ -8,17 +7,20 @@ import uz.muhandis.jpacrud.payload.UniversityDto;
 import uz.muhandis.jpacrud.repository.AddresRepository;
 import uz.muhandis.jpacrud.repository.UniversityRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UniversityService {
-    @Autowired
+    final
     UniversityRepository universityRepository;
-    @Autowired
+    final
     AddresRepository addresRepository;
+
+    public UniversityService(UniversityRepository universityRepository, AddresRepository addresRepository) {
+        this.universityRepository = universityRepository;
+        this.addresRepository = addresRepository;
+    }
 
     //Create
     public String add(UniversityDto universityDto) {

@@ -11,12 +11,18 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity(name = "groups")
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "faculty_id"}))
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
     private String name;
-    @OneToMany
-    List<Student> student;
+    @ManyToOne
+    private Faculty faculty;
+
+    public Group(String name, Faculty faculty) {
+        this.name = name;
+        this.faculty = faculty;
+    }
 }
